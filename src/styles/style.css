@@ -1,0 +1,255 @@
+:root {
+  --background: #121212;
+  --on-background: #FFFFFF;
+  --surface: #121212;
+  --on-surface: #FFFFFF;
+  --error: #CF6679;
+  --warning: #F39C12;
+  --grey: #cacaca;
+}
+
+[data-theme="light"] {
+  --background: #DDDDDD;
+  --on-background: #121212;
+  --surface: #FFFFFF;
+  --on-surface: #121212;
+  --error: #CF6679;
+  --warning: #F39C12;
+  --grey: #535353;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: background 0.3s ease-in;
+}
+
+a {
+  color: var(--on-background);
+}
+
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--on-background);
+  background-color: var(--background);
+  min-height: 100vh;
+}
+
+.header {
+  padding: 1rem;
+  color: var(--on-background);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.text {
+  padding-block: 1rem;
+  border-bottom: 1px solid var(--on-background);
+}
+
+.form-container, .register-input, .login-input {
+  padding-block: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-input {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.form-input label {
+  font-size: 18px;
+}
+
+input, textarea {
+  width: 100%;
+  border: 1px solid var(--on-surface);
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--background);
+  color: var(--surface);
+}
+
+button {
+  font-family: 'Inter', sans-serif;
+  font-weight: bold;
+  padding: 8px 20px;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.btn-form{
+  background-color: var(--on-background);
+  color: var(--surface);
+}
+
+.btn-container{
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btnArchive:hover {
+  background-color: var(--warning);
+}
+
+.btnUnarchive:hover {
+  background-color: var(--grey);
+}
+
+.btnDelete:hover {
+  background-color: var(--error);
+}
+
+.main {
+  margin: 0 auto;
+  padding: 32px 0;
+  width: 90%;
+  max-width: 1200px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.app-container, 
+.archive-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.notes-list, 
+.archive-list {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.notes-empty-message {
+  text-align: center;
+  color: var(--grey);
+}
+
+.note-item {
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid var(--on-background);
+  border-top: 5px solid;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.note-body .title {
+  margin: 4px 0;
+}
+
+.note-body .createdAt {
+  color: var(--grey);
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.note-item .body {
+  margin-top: 16px;
+  overflow: hidden;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+}
+
+/* Detail Page */
+.detail-page {
+  margin: 0 auto;
+  margin-top: 32px; 
+  width: 90%;
+}
+
+.detail-page .title {
+  font-size: 48px;
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.detail-page .createdAt {
+  color: var(--grey);
+  text-align: end;
+}
+
+.detail-page .body {
+  line-height: 1.5;
+  margin-top: 36px;
+  font-size: 18px;
+}
+
+.search-bar input {
+  font-family: 'Inter', sans-serif;
+  background-color: transparent;
+  border: 1px solid var(--on-background);
+  border-radius: 4px;
+  padding: 0.7rem 5rem 0.7rem 0.7rem;
+  color: var(--on-background);
+  margin-top: 0.5rem;
+}
+
+.search-bar input::placeholder {
+  color: var(--grey);
+}
+
+.not-found {
+  text-align: center;
+  color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.not-found h1 {
+  font-size: 36px;
+}
+
+.not-found p {
+  font-size: 20px;
+}
+
+@media screen and (min-width: 650px) {
+  .notes-list, .archive-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .detail-page__title { 
+    font-size: 64px;
+  }
+}
+
+@media screen and (min-width: 850px) {
+  .notes-list, .archive-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .notes-list, .archive-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
