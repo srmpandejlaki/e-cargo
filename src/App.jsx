@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
-import DetailPageWrapper from './pages/DetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
@@ -125,7 +124,6 @@ class App extends React.Component {
             <main>
               <Routes>
                 <Route exact path='/' element={<HomePage />} />
-                <Route path='/note/:id' element={<DetailPageWrapper />} />
                 <Route path='*' element={<NotFoundPage />} />
               </Routes>
             </main>
