@@ -48,7 +48,6 @@ function HomePage() {
       <section className='app-container'>
         <NoteLists
           notes={filteredNotes}
-          onArchive={onArchiveHandler}
           onDelete={onDeleteHandler}
         />
       </section>

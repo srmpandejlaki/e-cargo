@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { FaHome } from 'react-icons/fa';
 import { ThemeConsumer } from '../contexts/themeContext';
 import { LocaleConsumer } from '../contexts/localeContext';
-import { FaMoon, FaSun } from 'react-icons/fa';
+// import { FaMoon, FaSun } from 'react-icons/fa';
  
 function NavBar({ logout }) {
   return (
@@ -16,10 +16,10 @@ function NavBar({ logout }) {
               <button onClick={toggleLocale}>{locale === 'id' ? 'en' : 'id'}</button>
               <ThemeConsumer>
                 {({ theme, toggleTheme }) => {
-                  return <button onClick={toggleTheme}>{theme === 'light' ? <FaMoon /> : <FaSun />}</button>;
+                  return <button onClick={toggleTheme}>{theme === 'light' ? <p>terang</p> : <p>gelap</p>}</button>;
                 }}
               </ThemeConsumer>
-              <Link to="/"><FaHome size={24} /></Link>
+              <Link to="/"><p>home</p></Link>
               <button onClick={logout}>Logout</button>
             </nav>
           )

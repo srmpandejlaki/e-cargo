@@ -42,20 +42,20 @@ class App extends React.Component {
       }
     };
 
-    this.onLoginSuccess = this.onLoginSuccess.bind(this);
-    this.onLogout = this.onLogout.bind(this);
+    // this.onLoginSuccess = this.onLoginSuccess.bind(this);
+    // this.onLogout = this.onLogout.bind(this);
   }
 
-  async onLoginSuccess({ accessToken }) {
-    putAccessToken(accessToken);
-    const { data } = await getUserLogged();
-    this.setState(() => {
-      return {
-        authedUser: data,
-        initializing: true,
-      };
-    });
-  }
+  // async onLoginSuccess({ accessToken }) {
+  //   putAccessToken(accessToken);
+  //   const { data } = await getUserLogged();
+  //   this.setState(() => {
+  //     return {
+  //       authedUser: data,
+  //       initializing: true,
+  //     };
+  //   });
+  // }
 
   async componentDidMount() {
     const { data } = await getUserLogged();
@@ -75,37 +75,37 @@ class App extends React.Component {
     }
   }
 
-  onLogout() {
-    this.setState(() => {
-      return {
-        authedUser: null
-      }
-    });
-    putAccessToken('');
-  }
+  // onLogout() {
+  //   this.setState(() => {
+  //     return {
+  //       authedUser: null
+  //     }
+  //   });
+  //   putAccessToken('');
+  // }
  
   render() {
-    if (this.state.initializing) {
-      return null;
-    }
+    // if (this.state.initializing) {
+    //   return null;
+    // }
  
-    if (this.state.authedUser === null) {
-      return (
-        <LocaleProvider value={this.state.localeContext}>
-          <div className='main'>
-            <header className='header'>
-              <h1>DiPerNot</h1>
-            </header>
-            <main>
-              <Routes>
-                <Route path="/*" element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
-                <Route path="/register" element={<RegisterPage />} />
-              </Routes>
-            </main>
-          </div>
-        </LocaleProvider>
-      )
-    }
+    // if (this.state.authedUser === null) {
+    //   return (
+    //     <LocaleProvider value={this.state.localeContext}>
+    //       <div className='main'>
+    //         <header className='header'>
+    //           <h1>DiPerNot</h1>
+    //         </header>
+    //         <main>
+    //           <Routes>
+    //             <Route path="/*" element={<LoginPage loginSuccess={this.onLoginSuccess} />} />
+    //             <Route path="/register" element={<RegisterPage />} />
+    //           </Routes>
+    //         </main>
+    //       </div>
+    //     </LocaleProvider>
+    //   )
+    // }
  
     return (
       <LocaleProvider value={this.state.localeContext}>
@@ -114,7 +114,7 @@ class App extends React.Component {
             <header>
               <section className='header'>
                 <h1>DiPerNot</h1>
-                  <NavBar logout={this.onLogout} />
+                  <NavBar /> {/* logout={this.onLogout} */}
               </section>
               <p className='text'>{this.state.localeContext.locale === 'id' ? 
                 'Welcome to the Digital Personal Notes Chest. Always Save All Your Memories Here' : 
