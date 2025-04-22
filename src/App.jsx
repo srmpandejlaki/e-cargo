@@ -113,12 +113,12 @@ class App extends React.Component {
           <div className='main'>
             <header>
               <section className='header'>
-                <h1>DiPerNot</h1>
+                <h1>E-Cargo</h1>
                   <NavBar /> {/* logout={this.onLogout} */}
               </section>
               <p className='text'>{this.state.localeContext.locale === 'id' ? 
-                'Welcome to the Digital Personal Notes Chest. Always Save All Your Memories Here' : 
-                'Selamat Datang di Digital Personal Notes Chest. Simpanlah Semua Kenangan Anda di Sini'}
+                'Welcome to the E-Cargo.' : 
+                'Selamat Datang di E-Cargo'}
               </p>
             </header>
             <main>

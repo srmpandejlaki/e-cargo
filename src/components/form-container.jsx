@@ -37,17 +37,17 @@ class FormContainer extends React.Component {
 
     return (
       <div className='form-container'>
-        <h1>Let's Create Your Note</h1>
+        <h1>Let's Create</h1>
         <form onSubmit={this.onSubmitEventHandler}>
           <section className='form-input'>
             <input
               type='text'
-              placeholder='Title Notes'
+              placeholder='Kota Asal'
               value={title}
               onChange={this.onTitleChangeEventHandler}
             />
             <textarea
-              placeholder='Description'
+              placeholder='Kota Tujuan'
               value={body}
               onChange={this.onBodyChangeEventHandler}
             />
