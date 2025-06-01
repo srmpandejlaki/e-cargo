@@ -5,35 +5,52 @@ class FormContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
-      body: '',
+      namaBarang: '',
+      daerahAsal: '',
+      daerahTujuan: '',
+      totalBiaya: '',
     };
+
+    this.kotaOptions = [
+      'Kairagi',
+      'Malalayang',
+      'Kombos',
+      'Wanea',
+    ];
   }
 
-  onTitleChangeEventHandler = (event) => {
-    this.setState({ title: event.target.value });
-  }
+  onNamaBarangChangeEventHandler = (event) => {
+    this.setState({ namaBarang: event.target.value });
+  };
 
-  onBodyChangeEventHandler = (event) => {
-    this.setState({ body: event.target.value });
-  }
+  ondaerahAsalChangeEventHandler = (event) => {
+    this.setState({ daerahAsal: event.target.value });
+  };
+
+  ondaerahTujuanChangeEventHandler = (event) => {
+    this.setState({ daerahTujuan: event.target.value });
+  };
+
+  onTotalBiayaChangeEventHandler = (event) => {
+    this.setState({ totalBiaya: event.target.value });
+  };
 
   onSubmitEventHandler = (event) => {
     event.preventDefault();
 
-    const { title, body } = this.state;
+    const { namaBarang, daerahAsal, daerahTujuan, totalBiaya } = this.state;
 
-    if (title.trim().length === 0 || body.trim().length === 0) {
-      alert('Title and description cannot be empty!');
+    if (!daerahAsal || !daerahTujuan) {
+      alert('Kota asal dan tujuan harus dipilih!');
       return;
     }
 
-    this.props.addNotes({ title, body });
-    this.setState({ title: '', body: '' }); // Reset form
-  }
+    this.props.addNotes({ namaBarang, daerahAsal, daerahTujuan, totalBiaya });
+    this.setState({ namaBarang: '', daerahAsal: '', daerahTujuan: '', totalBiaya: '' }); // Reset form
+  };
 
   render() {
-    const { title, body } = this.state;
+    const { namaBarang, daerahAsal, daerahTujuan, totalBiaya } = this.state;
 
     return (
       <div className='form-container'>
@@ -42,14 +59,30 @@ class FormContainer extends React.Component {
           <section className='form-input'>
             <input
               type='text'
-              placeholder='Kota Asal'
-              value={title}
-              onChange={this.onTitleChangeEventHandler}
+              placeholder='Nama Barang'
+              value={namaBarang}
+              onChange={this.onNamaBarangChangeEventHandler}
             />
-            <textarea
-              placeholder='Kota Tujuan'
-              value={body}
-              onChange={this.onBodyChangeEventHandler}
+
+            <select value={daerahAsal} onChange={this.ondaerahAsalChangeEventHandler}>
+              <option value='' disabled>-- Pilih Kota Asal --</option>
+              {this.kotaOptions.map((kota, idx) => (
+                <option key={idx} value={kota}>{kota}</option>
+              ))}
+            </select>
+
+            <select value={daerahTujuan} onChange={this.ondaerahTujuanChangeEventHandler}>
+              <option value='' disabled>-- Pilih Kota Tujuan --</option>
+              {this.kotaOptions.map((kota, idx) => (
+                <option key={idx} value={kota}>{kota}</option>
+              ))}
+            </select>
+
+            <input
+              type='number'
+              placeholder='Total Biaya'
+              value={totalBiaya}
+              onChange={this.onTotalBiayaChangeEventHandler}
             />
           </section>
           <button className='btn-form' type='submit'>Save</button>
