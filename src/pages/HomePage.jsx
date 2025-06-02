@@ -6,6 +6,7 @@ import {
 } from '../utils/index';
 import NoteLists from '../components/notes-list';
 import FormContainer from '../components/form-container';
+import FormSideContainer from '../components/side_server/form-side-a';
 
 function HomePage() {
   const [notes, setNotes] = React.useState([]);
@@ -27,8 +28,8 @@ function HomePage() {
     note.title.toLowerCase().includes(keyword.toLowerCase())
   );
 
-  async function onAddNotesHandler({ title, body }) {
-    const result = await addNote({ title, body });
+  async function onAddNotesHandler({ namaBarang, daerahAsal, daerahTujuan, totalBiaya }) {
+    const result = await addNote({ namaBarang, daerahAsal, daerahTujuan, totalBiaya });
     if (!result.error) {
       getNotes();
     }
