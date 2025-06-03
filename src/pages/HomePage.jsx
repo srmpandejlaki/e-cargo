@@ -11,22 +11,25 @@ import FormSideBContainer from '../components/side_server/form-side-b';
 
 function HomePage() {
   const [notes, setNotes] = React.useState([]);
+  const [serverType, setServerType] = React.useState('main');
+  const [keyword, setKeyword] = React.useState(''); // Tambahan jika filter aktif
+
+  // Ambil tipe server dari localStorage saat komponen dimount
+  React.useEffect(() => {
+    const type = localStorage.getItem('serverType') || 'main';
+    setServerType(type);
+    getNotes();
+  }, []);
 
   // Fungsi ambil semua data notes
   async function getNotes() {
     const activeResponse = await getActiveNotes();
-
     const activeNotes = activeResponse.data || [];
-
     setNotes(activeNotes);
   }
 
-  React.useEffect(() => {
-    getNotes();
-  }, []);
-
   const filteredNotes = notes.filter((note) =>
-    note.title.toLowerCase().includes(keyword.toLowerCase())
+    note.title?.toLowerCase().includes(keyword.toLowerCase())
   );
 
   async function onAddNotesHandler({ namaBarang, daerahAsal, daerahTujuan, totalBiaya }) {
@@ -41,10 +44,24 @@ function HomePage() {
     getNotes();
   }
 
+  // Fungsi untuk render form berdasarkan serverType
+  const renderForm = () => {
+    switch (serverType) {
+      case 'main':
+        return <FormContainer addNotes={onAddNotesHandler} />;
+      case 'side-a':
+        return <FormSideAContainer addNotes={onAddNotesHandler} />;
+      case 'side-b':
+        return <FormSideBContainer addNotes={onAddNotesHandler} />;
+      default:
+        return <p>Server type tidak dikenali.</p>;
+    }
+  };
+
   return (
     <div className='main'>
       <section>
-        <FormContainer addNotes={onAddNotesHandler} />
+        {renderForm()}
       </section>
 
       <section className='app-container'>

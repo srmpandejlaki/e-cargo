@@ -11,33 +11,16 @@ class FormContainer extends React.Component {
       totalBiaya: '',
     };
 
-    this.kotaOptions = [
-      'Kairagi',
-      'Malalayang',
-      'Kombos',
-      'Wanea',
-    ];
+    this.kotaOptions = ['Kairagi', 'Malalayang', 'Kombos', 'Wanea'];
   }
 
-  onNamaBarangChangeEventHandler = (event) => {
-    this.setState({ namaBarang: event.target.value });
+  handleInputChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
   };
 
-  ondaerahAsalChangeEventHandler = (event) => {
-    this.setState({ daerahAsal: event.target.value });
-  };
-
-  ondaerahTujuanChangeEventHandler = (event) => {
-    this.setState({ daerahTujuan: event.target.value });
-  };
-
-  onTotalBiayaChangeEventHandler = (event) => {
-    this.setState({ totalBiaya: event.target.value });
-  };
-
-  onSubmitEventHandler = (event) => {
-    event.preventDefault();
-
+  handleSubmit = (e) => {
+    e.preventDefault();
     const { namaBarang, daerahAsal, daerahTujuan, totalBiaya } = this.state;
 
     if (!daerahAsal || !daerahTujuan) {
@@ -46,46 +29,73 @@ class FormContainer extends React.Component {
     }
 
     this.props.addNotes({ namaBarang, daerahAsal, daerahTujuan, totalBiaya });
-    this.setState({ namaBarang: '', daerahAsal: '', daerahTujuan: '', totalBiaya: '' }); // Reset form
+    this.setState({
+      namaBarang: '',
+      daerahAsal: '',
+      daerahTujuan: '',
+      totalBiaya: '',
+    });
   };
 
   render() {
     const { namaBarang, daerahAsal, daerahTujuan, totalBiaya } = this.state;
 
     return (
-      <div className='form-container'>
-        <h1>Let's Create</h1>
-        <form onSubmit={this.onSubmitEventHandler}>
-          <section className='form-input'>
+      <div className="form-container">
+        <h1>Form Pengiriman Barang</h1>
+        <form onSubmit={this.handleSubmit}>
+          <section className="form-input">
             <input
-              type='text'
-              placeholder='Nama Barang'
+              type="text"
+              name="namaBarang"
+              placeholder="Nama Barang"
               value={namaBarang}
-              onChange={this.onNamaBarangChangeEventHandler}
+              onChange={this.handleInputChange}
+              required
             />
 
-            <select value={daerahAsal} onChange={this.ondaerahAsalChangeEventHandler}>
-              <option value='' disabled>-- Pilih Kota Asal --</option>
-              {this.kotaOptions.map((kota, idx) => (
-                <option key={idx} value={kota}>{kota}</option>
+            <select
+              name="daerahAsal"
+              value={daerahAsal}
+              onChange={this.handleInputChange}
+              required
+            >
+              <option value="" disabled>-- Pilih Kota Asal --</option>
+              {this.kotaOptions.map((kota) => (
+                <option key={kota} value={kota}>
+                  {kota}
+                </option>
               ))}
             </select>
 
-            <select value={daerahTujuan} onChange={this.ondaerahTujuanChangeEventHandler}>
-              <option value='' disabled>-- Pilih Kota Tujuan --</option>
-              {this.kotaOptions.map((kota, idx) => (
-                <option key={idx} value={kota}>{kota}</option>
+            <select
+              name="daerahTujuan"
+              value={daerahTujuan}
+              onChange={this.handleInputChange}
+              required
+            >
+              <option value="" disabled>-- Pilih Kota Tujuan --</option>
+              {this.kotaOptions.map((kota) => (
+                <option key={kota} value={kota}>
+                  {kota}
+                </option>
               ))}
             </select>
 
             <input
-              type='number'
-              placeholder='Total Biaya'
+              type="number"
+              name="totalBiaya"
+              placeholder="Total Biaya"
               value={totalBiaya}
-              onChange={this.onTotalBiayaChangeEventHandler}
+              onChange={this.handleInputChange}
+              required
+              min="0"
             />
           </section>
-          <button className='btn-form' type='submit'>Save</button>
+
+          <button className="btn-form" type="submit">
+            Simpan
+          </button>
         </form>
       </div>
     );

@@ -43,7 +43,9 @@ class FormSideAContainer extends React.Component {
 
   handleUpdate = (id) => {
     const updatedItem = this.state.dataBarang.find((item) => item.id === id);
-    this.props.addNotes(updatedItem); // Kirim data ke parent atau backend
+    if (this.props.addNotes && typeof this.props.addNotes === 'function') {
+      this.props.addNotes(updatedItem);
+    }
     alert(`Status barang "${updatedItem.namaBarang}" diperbarui ke "${updatedItem.status}"`);
   };
 
@@ -62,7 +64,7 @@ class FormSideAContainer extends React.Component {
               <th>Tujuan</th>
               <th>Total Biaya</th>
               <th>Status</th>
-              <th>Action</th>
+              <th>Aksi</th>
             </tr>
           </thead>
           <tbody>
@@ -78,8 +80,8 @@ class FormSideAContainer extends React.Component {
                     value={item.status}
                     onChange={(e) => this.handleStatusChange(e, item.id)}
                   >
-                    {this.statusOptions.map((option, idx) => (
-                      <option key={idx} value={option}>
+                    {this.statusOptions.map((option) => (
+                      <option key={option} value={option}>
                         {option}
                       </option>
                     ))}
