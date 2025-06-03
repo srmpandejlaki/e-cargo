@@ -23,12 +23,31 @@ class FormContainer extends React.Component {
     e.preventDefault();
     const { namaBarang, daerahAsal, daerahTujuan, totalBiaya } = this.state;
 
+    // Validasi: asal dan tujuan tidak boleh kosong atau sama
     if (!daerahAsal || !daerahTujuan) {
       alert('Kota asal dan tujuan harus dipilih!');
       return;
     }
 
-    this.props.addNotes({ namaBarang, daerahAsal, daerahTujuan, totalBiaya });
+    if (daerahAsal === daerahTujuan) {
+      alert('Kota asal dan tujuan tidak boleh sama!');
+      return;
+    }
+
+    if (isNaN(totalBiaya) || Number(totalBiaya) <= 0) {
+      alert('Total biaya harus lebih dari 0!');
+      return;
+    }
+
+    // Kirim data
+    this.props.addNotes({
+      namaBarang,
+      daerahAsal,
+      daerahTujuan,
+      totalBiaya: parseInt(totalBiaya),
+    });
+
+    // Reset form
     this.setState({
       namaBarang: '',
       daerahAsal: '',
@@ -43,7 +62,7 @@ class FormContainer extends React.Component {
     return (
       <div className="form-container">
         <h1>Form Pengiriman Barang</h1>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit} autoComplete="off">
           <section className="form-input">
             <input
               type="text"
@@ -89,7 +108,7 @@ class FormContainer extends React.Component {
               value={totalBiaya}
               onChange={this.handleInputChange}
               required
-              min="0"
+              min="1"
             />
           </section>
 
