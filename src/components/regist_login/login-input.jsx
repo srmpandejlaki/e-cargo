@@ -12,9 +12,23 @@ function LoginInput({ login }) {
   };
 
   return (
-    <form className='login-input' onSubmit={onSubmitHandler}>
-      <input type="email" id="email" value={email} onChange={onEmailChange} placeholder='Input Your Email'/>
-      <input type="password" id="password" value={password} onChange={onPasswordChange} placeholder='Input Your Password'/>
+    <form className="login-input" onSubmit={onSubmitHandler}>
+      <input
+        type="email"
+        id="email"
+        value={email}
+        onChange={onEmailChange}
+        placeholder="Input Your Email"
+        required
+      />
+      <input
+        type="password"
+        id="password"
+        value={password}
+        onChange={onPasswordChange}
+        placeholder="Input Your Password"
+        required
+      />
       <button type="submit">Login</button>
     </form>
   );
