@@ -9,6 +9,7 @@ function RegisterPage() {
   async function onRegisterHandler(user) {
     const { error } = await register(user);
     if (!error) {
+      localStorage.setItem('server', user.server); // Simpan server ke localStorage
       navigate('/');
     }
   }
@@ -19,7 +20,7 @@ function RegisterPage() {
       <RegisterInput register={onRegisterHandler} />
       <p>Back to <Link to="/">Login</Link></p>
     </section>
-  )
+  );
 }
 
 export default RegisterPage;
