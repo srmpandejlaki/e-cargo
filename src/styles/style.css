@@ -232,6 +232,30 @@ button {
   font-size: 20px;
 }
 
+/* tabel */
+.tabels {
+  background: rgba(255, 255, 255, 0.539);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 300px;
+}
+.tabel {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tabel th, td {
+  border: 1px solid #121212;
+  padding-block: 0.3rem;
+  text-align: center;
+}
+
+.tabel th {
+  background-color: #f4f4f4;
+}
+
 @media screen and (min-width: 650px) {
   .notes-list, .archive-list {
     grid-template-columns: repeat(2, 1fr);

@@ -23,30 +23,32 @@ const FormSideBContainer = () => {
   return (
     <div className='form-container'>
       <h1>Data Pengiriman</h1>
-      <table border='1' cellPadding='8' cellSpacing='0'>
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>Nama Barang</th>
-            <th>Asal</th>
-            <th>Tujuan</th>
-            <th>Total Biaya</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dataBarang.map((item, index) => (
-            <tr key={item.id}>
-              <td>{index + 1}</td>
-              <td>{item.namaBarang}</td>
-              <td>{item.daerahAsal}</td>
-              <td>{item.daerahTujuan}</td>
-              <td>{item.totalBiaya.toLocaleString()}</td>
-              <td>{item.status}</td>
+      <div className="tabels">
+        <table className='tabel'>
+            <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Barang</th>
+                <th>Asal</th>
+                <th>Tujuan</th>
+                <th>Total Biaya</th>
+                <th>Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+            </thead>
+            <tbody>
+            {dataBarang.map((item, index) => (
+                <tr key={item.id}>
+                <td>{index + 1}</td>
+                <td>{item.namaBarang}</td>
+                <td>{item.daerahAsal}</td>
+                <td>{item.daerahTujuan}</td>
+                <td>{item.totalBiaya.toLocaleString()}</td>
+                <td>{item.status}</td>
+                </tr>
+            ))}
+            </tbody>
+        </table>
+      </div>
     </div>
   );
 };
