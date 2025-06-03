@@ -47,11 +47,11 @@ function HomePage() {
   // Render form berdasarkan server yang dipilih saat register
   const renderForm = () => {
     switch (serverType) {
-      case 'server-utama':
+      case 'master':
         return <FormContainer addNotes={onAddNotesHandler} />;
-      case 'server-side-a':
+      case 'side-a':
         return <FormSideAContainer addNotes={onAddNotesHandler} />;
-      case 'server-side-b':
+      case 'side-b':
         return <FormSideBContainer addNotes={onAddNotesHandler} />;
       default:
         return <p>Server tidak dikenali.</p>;

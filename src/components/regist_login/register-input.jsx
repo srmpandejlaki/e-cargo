@@ -32,9 +32,9 @@ function RegisterInput({ register }) {
         required
       />
       <select id="server" value={server} onChange={onServerChange} required>
-        <option value="server-utama">Server Utama</option>
-        <option value="server-side-a">Server Side A</option>
-        <option value="server-side-b">Server Side B</option>
+        <option value="master">Server Utama</option>
+        <option value="side-a">Server Side A</option>
+        <option value="side-b">Server Side B</option>
       </select>
       <input
         type="password"
