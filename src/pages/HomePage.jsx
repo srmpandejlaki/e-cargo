@@ -6,7 +6,8 @@ import {
 } from '../utils/index';
 import NoteLists from '../components/notes-list';
 import FormContainer from '../components/form-container';
-import FormSideContainer from '../components/side_server/form-side-a';
+import FormSideAContainer from '../components/side_server/form-side-a';
+import FormSideBContainer from '../components/side_server/form-side-b';
 
 function HomePage() {
   const [notes, setNotes] = React.useState([]);

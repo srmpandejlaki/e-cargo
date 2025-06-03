@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-class FormSideAContainer extends React.Component {
+class FormSideBContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -97,8 +97,8 @@ class FormSideAContainer extends React.Component {
   }
 }
 
-FormSideAContainer.propTypes = {
+FormSideBContainer.propTypes = {
   addNotes: PropTypes.func.isRequired,
 };
 
-export default FormSideAContainer;
+export default FormSideBContainer;
